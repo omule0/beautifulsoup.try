@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Web Scraping with Python and Beautiful Soup</title>
+</head>
+<body>
+	<h1>Web Scraping with Python and Beautiful Soup</h1>
+
+	<p>In this tutorial, we will learn how to use Python and Beautiful Soup to scrape data from websites. Web scraping is the process of extracting information from websites and is a powerful tool for data analysis and research.</p>
+
+	<h2>Requirements</h2>
+	<ul>
+		<li>Python 3.x</li>
+		<li>Beautiful Soup</li>
+		<li>Requests</li>
+	</ul>
+
+	<h2>Installation</h2>
+	<p>To install Beautiful Soup and Requests, you can use pip, the Python package installer:</p>
+
+	<pre><code>pip install beautifulsoup4 requests</code></pre>
+
+	<h2>Scraping a Web Page</h2>
+	<p>Here is an example Python script that uses Beautiful Soup to scrape data from a web page:</p>
+
+	<pre><code>import requests
+from bs4 import BeautifulSoup
+
+url = 'https://en.wikipedia.org/wiki/Web_scraping'
+response = requests.get(url)
+soup = BeautifulSoup(response.text, 'html.parser')
+
+title = soup.find('title').text
+print(title)
+
+links = soup.find_all('a')
+for link in links:
+    print(link.get('href'))</code></pre>
+
+	<p>This script scrapes the Wikipedia page on web scraping and extracts the page title and all of the links on the page.</p>
+
+	<h2>Conclusion</h2>
+	<p>Web scraping is a powerful tool for data analysis and research, and Python and Beautiful Soup make it easy to extract data from websites. With just a few lines of code, you can scrape web pages and collect the data you need for your projects.</p>
+</body>
+</html>
