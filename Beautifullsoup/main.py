@@ -22,9 +22,11 @@ print('Put some skill that you are not familiar with')
 unfamiliar_skill = input('>')
 print(f'Filtering out {unfamiliar_skill}')
 def find_jobs():
+
     # create the 'posts' directory if it does not exist
     if not os.path.exists('posts'):
         os.makedirs('posts')
+
     html_text = requests.get('https://www.timesjobs.com/candidate/job-search.html?searchType=personalizedSearch&from=submit&txtKeywords=python&txtLocation=').text
     #print(html_text)
     soup = BeautifulSoup(html_text,'lxml') #create a beautiful soup instance 
@@ -38,11 +40,12 @@ def find_jobs():
             more_info= job.header.h2.a
             if unfamiliar_skill not in skills:
                 with open(f'posts/{index}.txt','w') as f:
-                    f.write(f"Company Name: {company_name.strip()}")
-                    f.write(f"Required Skills: {skills.strip()}")
-                    f.write(f"published_date: {published_date.strip()}")
-                    f.write(f"More Info: {more_info['href']}")
+                    f.write(f"Company Name: {company_name.strip()} \n")
+                    f.write(f"Required Skills: {skills.strip()} \n")
+                    f.write(f"published_date: {published_date.strip()} \n")
+                    f.write(f"More Info: {more_info['href']} \n")
                 print(f'File saved: {index}')
+            
             #print(company_name)
             #print(skills)
             #print(f'''
@@ -55,6 +58,7 @@ def find_jobs():
 if __name__ == '__main__':
     while True:
         find_jobs()
-        time_wait = 10
+        time_wait = 1
         print(f'Waiting {time_wait} minutes...')
         time.sleep(time_wait * 60)
+
