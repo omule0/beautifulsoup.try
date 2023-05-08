@@ -7,20 +7,24 @@ from selenium import webdriver
 import csv
 
 
-url2 = 'https://disrupt-africa.com/2023/04/28/nigerian-fintech-startup-storspay-raises-320k-selected-for-techstars-nyc/?mc_cid=d70902c579&mc_eid=3e21a91cc9'
+print('Please enter the website you want to scrap')
+website = input('>')
+print(f'website has been sent')
+
+url = website
 
 driver = webdriver.Chrome()
 driver.implicitly_wait(30)
-driver.get(url2)
+driver.get(url)
 
 html_text = driver.page_source
 
 soup = BeautifulSoup(html_text,'lxml') 
 
+# make some inputs automatic
+
 articles = soup.find_all('article', class_ = "post-31949 post type-post status-publish format-standard has-post-thumbnail category-news category-west-africa tag-featured tag-storspay tag-techstars")
 
-
-# Check if the file already exists
 with open('output.csv', 'w', newline='', encoding='utf-8') as csvfile:
     writer = csv.writer(csvfile)
     for article in articles:
